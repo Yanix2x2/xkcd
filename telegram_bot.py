@@ -6,13 +6,13 @@ from dotenv import load_dotenv
 
 import telegram
 
-from xkcd import get_comic_data
+from xkcd import get_comic
 
 
 def send_message(bot, tg_chat_id):
     num_comic = random.randint(1, 3083)
 
-    comment, title, photo = get_comic_data(num_comic)
+    comment, title, photo = get_comic(num_comic)
 
     bot.send_photo(
         chat_id=tg_chat_id,
