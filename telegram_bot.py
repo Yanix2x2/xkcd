@@ -6,20 +6,19 @@ from dotenv import load_dotenv
 
 import telegram
 
-from xkcd import get_comment, get_comic_name, get_picture_link
+from xkcd import get_comic_data
 
 
 def send_message(bot, tg_chat_id):
     num_comic = random.randint(1, 3083)
-    comment = get_comment(num_comic)
-    title = get_comic_name(num_comic)
-    photo = get_picture_link(num_comic)
+
+    comment, title, photo = get_comic_data(num_comic)
 
     bot.send_photo(
         chat_id=tg_chat_id,
         photo=photo,
-        caption=f'*{title}*\n\n{comment}',
-        parse_mode='Markdown'
+        caption=f'<b>{title}</b>\n\n{comment}',
+        parse_mode='HTML'
     )
 
 
